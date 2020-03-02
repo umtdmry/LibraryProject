@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "spring.jpa.hibernite.ddl-auto",
+      "type": "java.lang.String",
+      "description": "Description for spring.jpa.hibernite.ddl-auto."
+    }
+  ] }

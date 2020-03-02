@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:32813/circle_test
+    username: root
+    password: admin
+  jpa:
+    hibernate:
+      ddl-auto: update
+server:
+  port: 8080
+
+
