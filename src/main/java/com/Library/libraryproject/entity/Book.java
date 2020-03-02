@@ -14,11 +14,8 @@ public class Book {
     private long id;
 
     private String name;
-
     private String description;
-
     private int page;
-
     private String publishYear;
 
     //cascade = CascadeType.ALL= Alt nesnelere ait bütün işlemleri tek bir işlemde yapar.
