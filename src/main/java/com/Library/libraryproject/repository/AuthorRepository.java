@@ -1,4 +1,11 @@
 package com.Library.libraryproject.repository;
 
-public interface AuthorRepository {
+import com.Library.libraryproject.entity.Author;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface AuthorRepository extends JpaRepository<Author,Long> {
+
+    Author getByAuthorId(long authorId);
 }

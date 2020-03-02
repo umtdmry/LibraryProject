@@ -1,32 +1,35 @@
 package com.Library.libraryproject.entity;
 
-import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
-@Builder
+@Table(name = "BOOK")
 public class Book {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private String bookName;
+    private String name;
 
     private String description;
 
     private int page;
 
-    private Date publishYear;
+    private String publishYear;
+
+    //cascade = CascadeType.ALL= Alt nesnelere ait bütün işlemleri tek bir işlemde yapar.
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Author author;
 
     public Book() {
     }
 
-    public void update(Book book) {
-        this.setBookName(book.getBookName());
+    public void updateBook(Book book) {
+        this.setName(book.getName());
         this.setDescription(book.getDescription());
         this.setPage(book.getPage());
         this.setPublishYear(book.getPublishYear());
