@@ -18,7 +18,6 @@ public class Author {
 
     private String authorDescription;
 
-
     public Author() {
     }
 

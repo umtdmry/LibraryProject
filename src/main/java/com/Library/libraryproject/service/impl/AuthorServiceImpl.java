@@ -1,7 +1,7 @@
 package com.Library.libraryproject.service.impl;
 
 import com.Library.libraryproject.entity.Author;
-import com.Library.libraryproject.exception.authorNotFoundException;
+import com.Library.libraryproject.exception.AuthorNotFoundException;
 import com.Library.libraryproject.repository.AuthorRepository;
 import com.Library.libraryproject.service.AuthorService;
 import lombok.extern.slf4j.Slf4j;
@@ -52,7 +52,7 @@ public class AuthorServiceImpl implements AuthorService {
             return author;
         } else {
             log.info("Not found by id author !");
-            throw new authorNotFoundException("Not found by " + id + " author");
+            throw new AuthorNotFoundException("Not found by " + id + " author");
         }
     }
 }
