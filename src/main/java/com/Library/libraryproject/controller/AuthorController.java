@@ -1,6 +1,8 @@
 package com.Library.libraryproject.controller;
 
+import com.Library.libraryproject.dto.AuthorDTO;
 import com.Library.libraryproject.entity.Author;
+import com.Library.libraryproject.mapper.DtoMapper;
 import com.Library.libraryproject.service.AuthorService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -8,13 +10,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/authors")
+@RequestMapping("books/authors")
 public class AuthorController {
 
-    private AuthorService authorService;
+    private final AuthorService authorService;
+    private final DtoMapper Mapper;
 
-    public AuthorController(AuthorService authorService) {
+    public AuthorController(AuthorService authorService, DtoMapper mapper) {
         this.authorService = authorService;
+        this.Mapper = mapper;
     }
 
     @GetMapping
@@ -23,9 +27,10 @@ public class AuthorController {
     }
 
     @PostMapping
-    public ResponseEntity<String> createAuthor(@RequestBody Author authorBody) {
-        authorService.addAuthor(authorBody);
-        return ResponseEntity.ok("Successful Register !");
+    public ResponseEntity<String> createAuthor(@RequestBody AuthorDTO authorDTO) {
+        Author author = Mapper.map(authorDTO);
+        authorService.addAuthor(author);
+        return ResponseEntity.ok("Successful Registery !");
     }
 
     @DeleteMapping(value = "/{authorId}")
@@ -35,8 +40,9 @@ public class AuthorController {
     }
 
     @PutMapping(value = "/{authorId}")
-    public ResponseEntity<String> updateAuthor(@PathVariable("authorId") long authorId, Author authorBody) {
-        authorService.editAuthor(authorId, authorBody);
+    public ResponseEntity<String> updateAuthor(@PathVariable("authorId") long authorId, @RequestBody AuthorDTO authorDTO) {
+        Author author = Mapper.map(authorDTO);
+        authorService.editAuthor(authorId, author);
         return ResponseEntity.ok("Successful Update !");
     }
 }

@@ -1,6 +1,9 @@
 package com.Library.libraryproject.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,13 +13,15 @@ public class Category {
     @Id
     @GeneratedValue
     private Long id;
+
     private String name;
 
-    public Category(){
-    }
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonBackReference
+    private Book book;
 
-    public void updateCategory(Category categoryBody){
-        this.setName(getName());
+    public void updateCategory(Category categoryBody) {
+        this.setName(categoryBody.getName());
+        this.setBook(categoryBody.getBook());
     }
-
 }
